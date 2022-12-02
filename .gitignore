@@ -1,0 +1,5 @@
+#IPYNB checkpoint
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
