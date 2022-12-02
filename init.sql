@@ -5,8 +5,6 @@ DROP TABLE player_prev_league;
 DROP TABLE player_info;
 DROP TABLE previous_league;
 
-
-
 -- Member Table
 -- use id as uuid
 -- use pw as one-way-encrypt for security
