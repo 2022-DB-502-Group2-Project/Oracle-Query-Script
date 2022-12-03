@@ -21,13 +21,13 @@ CREATE TABLE team_info(
     teamid VARCHAR2(1000) NOT NULL PRIMARY KEY,
     teamname VARCHAR2(50) NOT NULL,
     leaguetype VARCHAR2(30) NOT NULL,
-    totalgamecount NUMBER NOT NULL,
-    winingpoint NUMBER NOT NULL,
-    win NUMBER NOT NULL,
-    draw NUMBER NOT NULL,
-    lose NUMBER NOT NULL,
-    score NUMBER NOT NULL,
-    losspoint NUMBER NOT NULL
+    totalgamecount VARCHAR2(20) NOT NULL,
+    winingpoint VARCHAR2(20)  NOT NULL,
+    win VARCHAR2(20)  NOT NULL,
+    draw VARCHAR2(20)  NOT NULL,
+    lose VARCHAR2(20)  NOT NULL,
+    score VARCHAR2(20)  NOT NULL,
+    losspoint VARCHAR2(20)  NOT NULL
 );
 
 -- Homeground information of teams
@@ -35,7 +35,6 @@ CREATE TABLE team_info(
 CREATE TABLE team_homeground(
     teamid VARCHAR2(1000) NOT NULL PRIMARY KEY,
     stadiumname VARCHAR2(50) NOT NULL,
-
     CONSTRAINT fk_team FOREIGN KEY (teamid) REFERENCES team_info(teamid) ON DELETE CASCADE
 );
 
@@ -44,40 +43,38 @@ CREATE TABLE team_homeground(
 CREATE TABLE player_info(
     playerid VARCHAR2(1000) NOT NULL PRIMARY KEY,
     playername VARCHAR2(50) NOT NULL,
-    team VARCHAR2(1000),
-    teamname VARCHAR2(30),
+    teamid VARCHAR2(1000),
     leaguetype VARCHAR2(30) NOT NULL,
     position VARCHAR2(30),
-    backnumber NUMBER,
-    height NUMBER,
-    weight NUMBER,
+    backnumber VARCHAR2(20) ,
+    height VARCHAR2(20) ,
+    weight VARCHAR2(20) ,
     birth DATE,
     imgurl VARCHAR(1500)
 );
 
 -- previous leageu datas
-CREATE TABLE previous_league(
-    leagueid VARCHAR2(1000) NOT NULL PRIMARY KEY,
-    leaguename VARCHAR2(60) NOT NULL,
-    year NUMBER NOT NULL
+CREATE TABLE previous_league( 
+    leaguename VARCHAR2(60) NOT NULL PRIMARY KEY,
+    year VARCHAR2(20) NOT NULL
 );
 
 -- connection table between player_info and previous_league (m : n)
 CREATE TABLE player_prev_league(
     playerid VARCHAR2(1000) NOT NULL,
     leagueid VARCHAR2(1000) NOT NULL,
-    teamname VARCHAR2(30) NOT NULL,
-    participant NUMBER,
-    winningpoint NUMBER,
-    assist NUMBER,
-    goalkick NUMBER,
-    cornerkick NUMBER,
-    offside NUMBER,
-    shooting NUMBER,
-    foul NUMBER,
-    losspoint NUMBER,
-    warning NUMBER,
-    left NUMBER,
+    teamid VARCHAR2(1000) NOT NULL,
+    participant VARCHAR2(20) ,
+    winningpoint VARCHAR2(20) ,
+    assist VARCHAR2(20) ,
+    goalkick VARCHAR2(20) ,
+    cornerkick VARCHAR2(20) ,
+    offside VARCHAR2(20) ,
+    shooting VARCHAR2(20) ,
+    foul VARCHAR2(20) ,
+    losspoint VARCHAR2(20) ,
+    warning VARCHAR2(20) ,
+    left VARCHAR2(20) ,
     -- CONSTRAINT prev_connector_pk PRIMARY KEY (playerid,leagueid),
     CONSTRAINT prev_player_league_pk PRIMARY KEY (playerid, leagueid),
     CONSTRAINT fk_player FOREIGN KEY (playerid) REFERENCES player_info(playerid) ON DELETE CASCADE,
@@ -100,3 +97,4 @@ insert into player_prev_league (playerid, leagueid, teamname) values ('id1','lid
 
 -- commit queries
 commit;
+
